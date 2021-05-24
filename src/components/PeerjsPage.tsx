@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Peer from 'peerjs'
+import { Container } from '@material-ui/core'
 
 function PeerjsPage() {
   const [optionsString, setOptionsString] = useState(() => JSON.stringify({
@@ -56,7 +57,7 @@ function PeerjsPage() {
   }
 
   return (
-    <div>
+    <Container>
       <h1>PeerJS Playground</h1>
       <label>
         <div>Option JSON</div>
@@ -74,7 +75,7 @@ function PeerjsPage() {
       <div>
         {received.reverse().map((s, k) => <div key={k}>{s}</div>)}
       </div>
-    </div>
+    </Container>
   )
 }
 

@@ -1,10 +1,10 @@
 # Tools
 
-All the useful tools
+Some useful tools
 
 - peerjs-server and ICE STUN TURN connection testing
 
-- nginx & cert renewal script generation
+- nginx subdomain SSL configuration
 
 ## Available Scripts
 
