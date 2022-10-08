@@ -35,7 +35,6 @@ server {
 }
 
 server {
-  ssl on;
   ssl_certificate /etc/letsencrypt/live/${subdomain}/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/${subdomain}/privkey.pem;
   listen 443 ssl;
@@ -53,17 +52,19 @@ const NginxSslPage = () => {
     <Container style={{ overflowY: 'auto' }}>
       <Typography variant="h3">Nginx subdomain SSL config generation</Typography>
       <Typography>This util is to generate nginx ssl config with enforced HTTPS for a subdomain, and generate cert with certbot let's encrypt</Typography>
-      <Typography>Please refer to these articles for details: <Link href='https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx'>Certbot official</Link> <Link href='https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04'>Digital Ocean</Link></Typography>
+      <Typography>Please refer to these articles for details: <Link href='https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx'>Certbot official</Link> / <Link href='https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04'>Digital Ocean</Link></Typography>
       <Typography>First enter the subdomain, then enter port if you want this subdomain to proxy to a localhost server, or an absolute path if it is a static file hosting.</Typography>
       <TextField label="Subdomain" value={subdomain} onChange={({ target }) => setSubdomain(target.value)}/>
       <TextField label="port or path" value={portOrPath} onChange={({ target }) => setPortOrPath(target.value)}/>
-      <Typography>Next copy paste the below to <code>/etc/nginx/conf.d/{subdomain}.conf</code></Typography>
+      <Typography>Then generate the cert using certbot</Typography>
+      <Typography><code>sudo certbot --nginx -d {subdomain}</code></Typography>
+      <Typography>Next <code>sudo vi /etc/nginx/conf.d/{subdomain}.conf</code> and copy paste below</Typography>
       <pre>
         <code>
           {template(subdomain, portOrPath)}
         </code>
       </pre>
-      <Typography>Next run <code>sudo systemctl reload nginx</code>. Finally run <code>certbot certonly -d {subdomain}</code></Typography>
+      <Typography>Finally run <code>sudo systemctl reload nginx</code></Typography>
     </Container>
   )
 }

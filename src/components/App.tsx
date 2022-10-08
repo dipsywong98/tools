@@ -52,6 +52,20 @@ const App: FunctionComponent = () => {
                 <Link to="Nginx-SSL" component={Button}>
                   Nginx SSL
                 </Link>
+                <Button style={{display: 'none'}} onClick={() => {
+                  fetch('https://i.imgur.com/pUTZplB.jpg')
+                  .then(res => res.blob())
+                  .then(blob => {
+                    const file = new File([blob], 'dot.png', blob)
+                    navigator.share({
+                      // title: 'MDN',
+                      // text: 'Learn web development on MDN!',
+                      files: [file,file,file,file,file,file,]
+                    })
+                  })
+                }}>
+                  test ig
+                </Button>
                 <Button title="Light/Dark Mode" onClick={() => setIsDarkMode(!isDarkMode)}>
                   <Brightness7/>
                 </Button>
