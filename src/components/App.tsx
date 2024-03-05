@@ -16,6 +16,7 @@ import { HashRouter, Link, Route, Switch } from 'react-router-dom'
 import PeerjsPage from './PeerjsPage'
 import NginxSslPage from './NginxSslPage'
 import HomePage from './HomePage'
+import { Midi } from './Midi'
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -52,6 +53,9 @@ const App: FunctionComponent = () => {
                 <Link to="Nginx-SSL" component={Button}>
                   Nginx SSL
                 </Link>
+                <Link to="midi" component={Button}>
+                  Midi json
+                </Link>
                 <Button style={{display: 'none'}} onClick={() => {
                   fetch('https://i.imgur.com/pUTZplB.jpg')
                   .then(res => res.blob())
@@ -73,6 +77,9 @@ const App: FunctionComponent = () => {
             </Toolbar>
           </AppBar>
           <Switch>
+            <Route path="/midi">
+              <Midi/>
+            </Route>
             <Route path="/peerjs">
               <PeerjsPage/>
             </Route>
